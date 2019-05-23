@@ -1,0 +1,18 @@
+# Routes
+
+
+GET     /                           controllers.Application.index(message: Option[String])
+
+GET     /show                       controllers.Application.showAll
+
+GET     /test-view                  controllers.Application.testview
+
+GET     /new-game                   controllers.Application.newGame(newGame: Option[String])
+GET     /join-game                  controllers.Application.joinGame(gameId: Option[String])
+GET     /game/:id                   controllers.Application.viewGame(id)
+GET     /game/:id/:i                controllers.Application.updateGame(id, i: Int)
+
+GET     /delete-game/:id            controllers.Application.drop(id)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

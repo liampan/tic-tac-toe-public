@@ -1,0 +1,33 @@
+@import controllers.TttGameLogic
+@import models._
+@import conf.ApplicationConfig
+
+@this(gameLogic: TttGameLogic, tile: tilePartial, config: ApplicationConfig)
+@(board: TicTacToeBoard, message: String = "")(implicit request: RequestWithSession[_])
+@main("O&X"){
+
+        @if(request.sessionID != board.whosSession && !gameLogic.checkWin(board)) { <meta http-equiv="refresh" content="5" /> }
+
+        <h1 align="center" > TIC TAC TOE </h1>
+
+        @if(!gameLogic.checkWin(board)) {<h3 align="center"> player @board.whosTurn you're up!</h3>}
+
+        @if(gameLogic.checkWin(board)){<h2 align="center">Player @board.prevTurn is the Winner!</h2>} else {<h2 align="center">@message</h2>}
+
+        <table align="center" height="50%" width="50%" border="2">
+            @board.board.squaresStates.zipWithIndex.map(a =>(a._1, a._2 +1)).sliding(3,3).toList.map{a =>
+            <tr>
+                <td align="center">@tile(a(0), board)</td>
+                <td align="center">@tile(a(1), board)</td>
+                <td align="center">@tile(a(2), board)</td>
+            </tr>
+            }
+        </table>
+
+
+    <ul>
+        game info:
+        <li> session id = @request.sessionID </li>
+        <li> current session to play = @board.whosSession </li>
+    </ul>
+}

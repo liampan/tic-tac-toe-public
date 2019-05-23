@@ -1,0 +1,11 @@
+@import models._
+@import controllers.TttGameLogic
+
+@this(gameLogic: TttGameLogic)
+@(square: (State, Int), board: TicTacToeBoard)(implicit request: RequestWithSession[_])
+
+    @if(request.sessionID ==  board.whosSession){
+        @if(square._1 == Empty) {<a href=/game/@board.id/@square._2 ><img align="center" width=100% src="@routes.Assets.at("images/empty.png")" alt="-"></a>}
+    } else if(square._1 == Empty) {<img align="center" width=100% src="@routes.Assets.at("images/empty.png")" alt="-">}
+    @if(square._1 == Cross) {<img align="center" width=100% src="@routes.Assets.at("images/cross.png")" alt="X">}
+    @if(square._1 == Naught){<img align="center" width=100% src="@routes.Assets.at("images/naught.png")" alt="O">}

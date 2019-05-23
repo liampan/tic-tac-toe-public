@@ -1,0 +1,33 @@
+@(message: Option[String])
+
+@main("Start") {
+
+<div align="center">
+    <h1 align="center">TIC TAC TOE</h1>
+
+    @if(message.nonEmpty){<div align="center" class="boxed"><error >@message</error></div>}
+</div>
+
+
+<div class="row">
+    <div class="column blueBG" align="center">
+        <h2>Start a new game</h2>
+        <form action="/new-game">
+            <input type="text" name="newGame" placeholder="eg: pansGame">
+            <input type="submit" value="New Game">
+        </form>
+        <br><br>
+    </div>
+
+    <div class="column greenBG" align="center">
+        <h2>Join a friends game</h2>
+        <form action="/join-game">
+            <p>Enter game ID</p>
+            <br>
+            <input type="text" required="required" name="gameId" placeholder="eg: game-123"> <input type="submit" value="Join Game">
+        </form>
+    </div>
+</div>
+
+
+}

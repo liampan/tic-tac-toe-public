@@ -1,0 +1,26 @@
+@import conf.ApplicationConfig
+
+@this(config: ApplicationConfig)
+@(gameId: String)
+@main("Join") {
+
+<meta http-equiv="refresh" content="5" />
+
+<div>
+    <h1 align="center">TIC TAC TOE</h1>
+</div>
+
+    <div class="greenBG" align="center">
+        <br>
+        <h2>Player 2 still needs to join</h2>
+        <p>Get them to enter:</p>
+        <h2>@gameId</h2>
+        <p>Or send them to:</p>
+        <h2>@{config.appHost}/join-game?gameId=@gameId</h2>
+
+        <br>
+    </div>
+
+
+
+}
